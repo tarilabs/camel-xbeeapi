@@ -41,13 +41,13 @@ public class XBeeAPIConsumer extends DefaultConsumer implements PacketListener {
 	public void processResponse(XBeeResponse response) {
 		final Exchange exchange = endpoint.createExchange();
 		exchange.getIn().setBody(response);
-		log.info("about to async process");
+		log.debug("about to async process");
 		AsyncProcessorHelper.process(getAsyncProcessor(), exchange, new AsyncCallback() {		
 			@Override
 			public void done(boolean arg0) {
-				log.info("callback done.");
+				log.debug("callback done.");
 			}
 		});
-		log.info("processResponse finished after having sent asynch");
+		log.debug("processResponse finished after having sent asynch");
 	}
 }
